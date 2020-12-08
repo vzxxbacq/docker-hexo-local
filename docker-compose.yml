@@ -1,0 +1,21 @@
+version: '3'
+services:
+  hexo:
+    container_name: hexo
+    build: .
+    ports: 
+      - "4000:4000"
+    environment: 
+      PUBLIC_HEXO_GITHUB_URL: https://github.com/zeusro/docker-hexo.git
+      VIRTUAL_HOST: blog.vzxxbacq.cn
+      VIRTUAL_PORT: 4000
+      LETSENCRYPT_HOST: blog.vzxxbacq.cn
+      LETSENCRYPT_EMAIL: fhq981014@gmail.com
+    entrypoint:
+      - sh
+      - /root/blog/build_and_run.sh
+
+networks:
+  default:
+    external:
+      name: webproxy
